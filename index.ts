@@ -1,13 +1,15 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import {connectDatabase} from "./repositories/connect-database";
+import userRouter from './controllers/user_controller'
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// @ts-ignore
-mongoose.connect('mongodb://localhost:27017', {useUnifiedTopology: true, useNewUrlParser: true});
+connectDatabase();
+
+app.use('/users', userRouter);
 
 // @ts-ignore
 app.listen(process.env.EXTERNAL_PORT || 3000, () => console.log(`Server up at http://localhost:${process.env.EXTERNAL_PORT || 3000}`));

@@ -1,0 +1,5 @@
+{
+  "migrationsDir": "migrations",
+  "typescript": true,
+  "dbConnectionUri": "mongodb://localhost:27017"
+}
