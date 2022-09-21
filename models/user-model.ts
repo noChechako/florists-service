@@ -1,4 +1,5 @@
 import * as mongoose from "mongoose";
+import {ROLE} from "./interfaces/user-interface";
 
 const {Schema} = mongoose;
 const UserSchema = new Schema({
@@ -24,4 +25,11 @@ const UserSchema = new Schema({
     },
 });
 
-export default mongoose.model('User', UserSchema);
+export interface UserResponse extends mongoose.Document{
+    email: string;
+    username: string;
+    password: string;
+    role: ROLE;
+}
+
+export default mongoose.model<UserResponse>('User', UserSchema);

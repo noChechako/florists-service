@@ -1,6 +1,6 @@
 import express from 'express';
 import {connectDatabase} from "./repositories/connect-database";
-import userRouter from './controllers/user_controller'
+import userRouter from './controllers/user-controller'
 
 const app = express();
 

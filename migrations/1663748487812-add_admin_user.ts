@@ -18,8 +18,6 @@ export async function up() {
  */
 export async function down() {
     await User.deleteOne({
-        email: 'admin@mail.ru',
-        password: '123456',
-        username: 'admin',
-        role: 'ADMIN'
-    })}
+        username: 'admin'
+    })
+}
