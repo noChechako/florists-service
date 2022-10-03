@@ -4,6 +4,6 @@ import {login} from '../services/auth-service';
 const router = Router();
 
 router
-    .post('/login', login)
+    .post('/login', login);
 
 export default router;

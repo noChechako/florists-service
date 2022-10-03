@@ -22,4 +22,4 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
     } else {
       next(new UnauthorizedException());
     }
-};
+}

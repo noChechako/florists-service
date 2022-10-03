@@ -11,10 +11,9 @@ export function authenticateJWT(req: Request, res: Response, next: NextFunction)
     if (authHeader) {
         const token = authHeader.split(' ')[1];
 
-        console.log(token)
         jwt.verify(token, process.env.JWT_SECRET_KEY, (err: Error) => {
             if (err) {
-                next(new ForbiddenException())
+                next(new ForbiddenException());
             }
             next();
         });

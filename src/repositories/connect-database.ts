@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {logger} from '../utils/logger';
 
 const mongoURL = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 
@@ -10,15 +11,15 @@ const mongoOptions = {
 
 const db = mongoose.connection;
 
-db.on('connecting', () => console.log('Connecting to MongoDB...'));
+db.on('connecting', () => logger.info('Connecting to MongoDB...'));
 
-db.on('error', (error) => console.log(error));
+db.on('error', (error) => logger.error(error));
 
-db.on('connected', () => console.log('MongoDB connected!'));
+db.on('connected', () => logger.info('MongoDB connected!'));
 
-db.once('open', async () => console.log('MongoDB opened!'));
+db.once('open', async () => logger.info('MongoDB opened!'));
 
-db.on('reconnected', () => console.log('MongoDB reconnected!'));
+db.on('reconnected', () => logger.info('MongoDB reconnected!'));
 
 db.on('disconnected', () => {
     retryConnectionAfterTimeout();

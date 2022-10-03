@@ -10,18 +10,18 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
         }
         return res.status(200).json(user);
     } catch (e) {
-        next(e)
+        next(e);
     }
-};
+}
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
     try {
         const createdUser = await User.create(req.body);
         return res.status(201).json(createdUser);
     } catch (e) {
-        next(e)
+        next(e);
     }
-};
+}
 
 export async function updateUser(req: Request, res: Response, next: NextFunction) {
     try {
@@ -31,9 +31,9 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
         }
         res.status(200).json(updatedUser);
     } catch (e) {
-        next(e)
+        next(e);
     }
-};
+}
 
 export async function deleteUser(req: Request, res: Response, next: NextFunction) {
     try {
@@ -43,6 +43,6 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
         }
         res.status(200).json(deletedUser);
     } catch (e) {
-        next(e)
+        next(e);
     }
-};
+}
