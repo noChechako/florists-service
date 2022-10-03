@@ -1,5 +1,5 @@
-import User from "./user-model";
-import {connectDatabase} from "../repositories/connect-database";
+import User from './user-model';
+import {connectDatabase} from '../repositories/connect-database';
 
 connectDatabase();
 

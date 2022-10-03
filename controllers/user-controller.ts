@@ -6,8 +6,8 @@ const router = Router();
 
 router
     .get('/:id', authenticateJWT, getUser)
-    .post('/', createUser)
-    .put('/:id', updateUser)
-    .delete('/:id', deleteUser)
+    .post('/', authenticateJWT, createUser)
+    .put('/:id', authenticateJWT, updateUser)
+    .delete('/:id', authenticateJWT, deleteUser)
 
 export default router;

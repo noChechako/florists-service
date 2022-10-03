@@ -1,6 +1,6 @@
-import User from "../models/user-model";
+import User from '../models/user-model';
 import {Response, Request, NextFunction} from 'express';
-import UserNotFoundException from "../models/errors/User-not-found";
+import UserNotFoundException from '../models/errors/User-not-found';
 
 export async function getUser(req: Request, res: Response, next: NextFunction) {
     try {

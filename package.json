@@ -8,7 +8,8 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "migrate": "migrate"
+    "migrate": "migrate",
+    "tslint": "tslint -p tsconfig.json"
   },
   "keywords": [],
   "author": "",

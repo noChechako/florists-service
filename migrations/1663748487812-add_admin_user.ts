@@ -1,4 +1,4 @@
-import {User} from "../models";
+import {User} from '../models';
 
 /**
  * Make any changes you need to make to the database here

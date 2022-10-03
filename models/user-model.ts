@@ -1,5 +1,5 @@
-import * as mongoose from "mongoose";
-import {ROLE} from "./interfaces/user-interface";
+import * as mongoose from 'mongoose';
+import {ROLE} from './interfaces/user-interface';
 
 const {Schema} = mongoose;
 const UserSchema = new Schema({

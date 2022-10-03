@@ -12,4 +12,4 @@ export interface UserUpdate {
     role?: ROLE;
 }
 
-export type ROLE = "USER" | "ADMIN"
+export type ROLE = 'USER' | 'ADMIN'

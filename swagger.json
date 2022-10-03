@@ -1,5 +1,5 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
     "title": "Florists",
@@ -9,6 +9,11 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "host": "localhost:3000",
   "basePath": "/",
   "tags": [
@@ -27,7 +32,7 @@
     "application/json"
   ],
   "paths": {
-    "/user": {
+    "/users": {
       "post": {
         "summary": "Create user",
         "tags": [
@@ -40,7 +45,7 @@
             "in": "body",
             "description": "Create user",
             "schema": {
-              "$ref": "#/definitions/UserInput"
+              "$ref": "#/components/schemas/UserInput"
             }
           }
         ],
@@ -48,23 +53,59 @@
           "application/json"
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "New user is created",
             "schema": {
-              "$ref": "#/definitions/UserOutput"
+              "$ref": "#/components/schemas/UserOutput"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UserNotFound": {
+                    "$ref": "#/components/examples/UserNotFoundException"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "$ref": "#/components/examples/UnauthorizedException"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "InternalServerError": {
+                    "$ref": "#/components/examples/InternalServerError"
+                  }
+                }
+              }
             }
           }
         }
       }
     },
-    "/user/{id}": {
+    "/users/{id}": {
       "parameters": [
         {
           "name": "id",
           "in": "path",
           "required": true,
           "description": "ID of user",
-          "type": "integer"
+          "type": "string"
         }
       ],
       "get": {
@@ -76,7 +117,43 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/UserOutput"
+              "$ref": "#/components/schemas/UserOutput"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UserNotFound": {
+                    "$ref": "#/components/examples/UserNotFoundException"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "$ref": "#/components/examples/UnauthorizedException"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "InternalServerError": {
+                    "$ref": "#/components/examples/InternalServerError"
+                  }
+                }
+              }
             }
           }
         }
@@ -90,7 +167,43 @@
           "200": {
             "description": "User is deleted",
             "schema": {
-              "$ref": "#/definitions/UserOutput"
+              "$ref": "#/components/schemas/UserOutput"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UserNotFound": {
+                    "$ref": "#/components/examples/UserNotFoundException"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "$ref": "#/components/examples/UnauthorizedException"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "InternalServerError": {
+                    "$ref": "#/components/examples/InternalServerError"
+                  }
+                }
+              }
             }
           }
         }
@@ -106,7 +219,7 @@
             "in": "body",
             "description": "User with new values of properties",
             "schema": {
-              "$ref": "#/definitions/UserInput"
+              "$ref": "#/components/schemas/UserInput"
             }
           }
         ],
@@ -114,49 +227,121 @@
           "200": {
             "description": "User is updated",
             "schema": {
-              "$ref": "#/definitions/UserOutput"
+              "$ref": "#/components/schemas/UserOutput"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "UserNotFound": {
+                    "$ref": "#/components/examples/UserNotFoundException"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "$ref": "#/components/examples/UnauthorizedException"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "InternalServerError": {
+                    "$ref": "#/components/examples/InternalServerError"
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "definitions": {
-    "UserOutput": {
-      "properties": {
-        "_id": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string",
-          "enum": ["ADMIN", "USER"]
+  "components": {
+    "schemas": {
+      "UserOutput": {
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "USER"
+            ]
+          }
+        }
+      },
+      "UserInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "USER"
+            ]
+          }
         }
       }
     },
-    "UserInput": {
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "role": {
-          "type": "string",
-          "enum": ["ADMIN", "USER"]
+    "examples": {
+      "UserNotFoundException": {
+        "value": {
+          "code": "UserNotFoundException",
+          "message": "User with id 632add196a27c57f3ecf1ab2 not found"
         }
+      },
+      "UnauthorizedException": {
+        "value": {
+          "code": "UnauthorizedException",
+          "message": "Unauthorized"
+        }
+      },
+      "InternalServerError": {
+        "value": {
+          "code": "InternalServerError",
+          "message": "Internal server error"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
