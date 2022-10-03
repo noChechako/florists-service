@@ -32,6 +32,64 @@
     "application/json"
   ],
   "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Get access token",
+        "tags": [
+          "Auth"
+        ],
+        "security": [],
+        "description": "Get access token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAuth"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessToken"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "$ref": "#/components/examples/UnauthorizedException"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "InternalServerError": {
+                    "$ref": "#/components/examples/InternalServerError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "summary": "Create user",
@@ -39,24 +97,27 @@
           "User"
         ],
         "description": "Create new user",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "Create user",
-            "schema": {
-              "$ref": "#/components/schemas/UserInput"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserInput"
+              }
             }
           }
-        ],
+        },
         "produces": [
           "application/json"
         ],
         "responses": {
           "201": {
             "description": "New user is created",
-            "schema": {
-              "$ref": "#/components/schemas/UserOutput"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserOutput"
+                }
+              }
             }
           },
           "404": {
@@ -115,9 +176,13 @@
         "summary": "Get user",
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/components/schemas/UserOutput"
+            "description": "Get user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserOutput"
+                }
+              }
             }
           },
           "404": {
@@ -166,8 +231,12 @@
         "responses": {
           "200": {
             "description": "User is deleted",
-            "schema": {
-              "$ref": "#/components/schemas/UserOutput"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserOutput"
+                }
+              }
             }
           },
           "404": {
@@ -226,8 +295,12 @@
         "responses": {
           "200": {
             "description": "User is updated",
-            "schema": {
-              "$ref": "#/components/schemas/UserOutput"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserOutput"
+                }
+              }
             }
           },
           "404": {
@@ -292,6 +365,25 @@
               "ADMIN",
               "USER"
             ]
+          }
+        }
+      },
+      "AccessToken": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string"
+          }
+        }
+      },
+      "UserAuth": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
           }
         }
       },
