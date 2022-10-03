@@ -12,7 +12,7 @@ const db = mongoose.connection;
 
 db.on('connecting', () => console.log('Connecting to MongoDB...'));
 
-db.on('error', (error) => error);
+db.on('error', (error) => console.log(error));
 
 db.on('connected', () => console.log('MongoDB connected!'));
 

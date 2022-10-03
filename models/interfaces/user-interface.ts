@@ -12,7 +12,4 @@ export interface UserUpdate {
     role?: ROLE;
 }
 
-export enum ROLE {
-    ADMIN = "ADMIN",
-    USER = "USER"
-}
+export type ROLE = "USER" | "ADMIN"
