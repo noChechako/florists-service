@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {createUser, deleteUser, getUser, updateUser} from '../services/user-service';
-import {authenticateJWT} from '../auth/verify_jwt';
+import {createUser, deleteUser, getUser, updateUser} from '../services/user.service';
+import {authenticateJWT} from '../auth/verify-jwt';
 
 const router = Router();
 

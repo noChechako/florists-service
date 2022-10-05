@@ -1,5 +1,5 @@
 import {describe, expect, test} from '@jest/globals';
-import {createUser, deleteUser, getUser, updateUser} from './user-service';
+import {createUser, deleteUser, getUser, updateUser} from './user.service';
 import {User} from '../models';
 import {Request, Response} from 'express';
 

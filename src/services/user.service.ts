@@ -1,9 +1,9 @@
 /**
  * @module user-service
  */
-import User from '../models/user-model';
+import User from '../models/user.model';
 import {Response, Request, NextFunction} from 'express';
-import UserNotFoundException from '../models/errors/User-not-found';
+import UserNotFoundException from '../shared/errors/user-not-found.exception';
 
 /**
  * @param req - request

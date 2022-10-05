@@ -1,5 +1,5 @@
 import {expect, test} from '@jest/globals';
-import {login} from './auth-service';
+import {login} from './auth.service';
 import {Response, Request} from 'express';
 import {User} from '../models';
 import jwt from 'jsonwebtoken';

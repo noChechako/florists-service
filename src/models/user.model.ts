@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import {ROLE} from './interfaces/user-interface';
+import {ROLE} from '../shared/interfaces/user.interface';
 
 const {Schema} = mongoose;
 

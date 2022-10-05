@@ -1,4 +1,4 @@
-import CustomException from './Custom-error';
+import CustomException from './custom.exception';
 
 /**
  * This is exception to warn that the action is not allowed for the user

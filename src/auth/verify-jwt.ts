@@ -1,8 +1,8 @@
 import {NextFunction, Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
-import ForbiddenException from '../models/errors/Forbidden';
-import UnauthorizedException from '../models/errors/Unauthorized';
+import ForbiddenException from '../shared/errors/forbidden.exception';
+import UnauthorizedException from '../shared/errors/unauthorized.exception';
 
 dotenv.config();
 

@@ -1,4 +1,4 @@
-import CustomException from './Custom-error';
+import CustomException from './custom.exception';
 
 /**
  * This is exception to warn that credentials for unauthorized user

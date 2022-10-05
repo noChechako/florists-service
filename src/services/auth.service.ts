@@ -1,12 +1,12 @@
 /**
  * @module auth-service
  */
-import User from '../models/user-model';
-import {LoginCredentials} from '../models/interfaces/login-interface';
+import User from '../models/user.model';
+import {LoginCredentials} from '../shared/interfaces/login.interface';
 import {NextFunction, Response, Request} from 'express';
 import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
-import UnauthorizedException from '../models/errors/Unauthorized';
+import UnauthorizedException from '../shared/errors/unauthorized.exception';
 
 dotenv.config();
 
