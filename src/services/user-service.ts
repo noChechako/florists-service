@@ -29,7 +29,7 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
         if (!updatedUser) {
             next(new UserNotFoundException(req.params.id));
         }
-        res.status(200).json(updatedUser);
+        return res.status(200).json(updatedUser);
     } catch (e) {
         next(e);
     }
@@ -41,7 +41,7 @@ export async function deleteUser(req: Request, res: Response, next: NextFunction
         if (!deletedUser) {
             next(new UserNotFoundException(req.params.id));
         }
-        res.status(200).json(deletedUser);
+        return res.status(200).json(deletedUser);
     } catch (e) {
         next(e);
     }

@@ -7,7 +7,7 @@ import UnauthorizedException from '../models/errors/Unauthorized';
 
 dotenv.config();
 
-export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function login(req: Request, res: Response, next: NextFunction) {
     const {username, password}: LoginCredentials = req.body;
     const user = await User.findOne({username, password});
     if (user) {
@@ -16,7 +16,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
             role: user.role
         }, process.env.JWT_SECRET_KEY, {expiresIn: '20m'});
 
-        await res.json({
+        return res.json({
             accessToken,
         });
     } else {
