@@ -1,10 +1,10 @@
 import express from 'express';
-import {connectDatabase} from './src/repositories/connect-database';
-import userRouter from './src/controllers/user-controller';
-import authRouter from './src/controllers/auth-controller';
+import {connectDatabase} from './repositories/connect-database';
+import userRouter from './controllers/user-controller';
+import authRouter from './controllers/auth-controller';
 import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from './swagger.json';
-import {errorMiddleware} from './src/middlewares/error-handler';
+import swaggerJsdoc from '../swagger.json';
+import {errorMiddleware} from './middlewares/error-handler';
 import * as dotenv from 'dotenv';
 
 dotenv.config();

@@ -41,6 +41,9 @@ const retryConnectionAfterTimeout = () => {
     }
 };
 
+/**
+ * Function of connecting to database with retry
+ */
 export function connectDatabase() {
     mongoose
         .connect(mongoURL, mongoOptions)

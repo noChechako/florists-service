@@ -6,6 +6,14 @@ import UnauthorizedException from '../models/errors/Unauthorized';
 
 dotenv.config();
 
+/**
+ * @param req - request
+ * @param res - response
+ * @param next - next
+ * @returns Access token
+ * @throws {@link ../models/errors/Unauthorized} if authHeader is `null`
+ * @throws {@link ../models/errors/Forbidden} if err
+ */
 export function authenticateJWT(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
     if (authHeader) {

@@ -1,7 +1,7 @@
 import {describe, expect, test} from '@jest/globals';
 import {createUser, deleteUser, getUser, updateUser} from './user-service';
-import {User} from "../models";
-import {Request, Response} from "express";
+import {User} from '../models';
+import {Request, Response} from 'express';
 
 const mockBodyRequest = {
     email: 'admin@mail.ru',
@@ -20,7 +20,7 @@ const mockBodyResponse = {
 
 const mockReqParams = {
     id: '632add196a27c57f3ecf1ab2'
-}
+};
 
 const mockResponse = () => {
     const res: any = {};
@@ -90,7 +90,7 @@ describe('Success', () => {
         expect(result).toBe(JSON.stringify({...mockBodyResponse}));
         expect(next).toHaveBeenCalledTimes(0);
     });
-})
+});
 
 describe('Failed', () => {
     test('Get user. User not found', async () => {

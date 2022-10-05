@@ -1,8 +1,18 @@
+/**
+ * @module user-service
+ */
 import User from '../models/user-model';
 import {Response, Request, NextFunction} from 'express';
 import UserNotFoundException from '../models/errors/User-not-found';
 
-export async function getUser(req: Request, res: Response, next: NextFunction) {
+/**
+ * @param req - request
+ * @param res - response
+ * @param next - next
+ * @returns The user get from db by id
+ * @throws {@link ../models/errors/User-not-found} if user is `null`
+ */
+export async function getUser(req: Request, res: Response, next: NextFunction): Promise<typeof res> {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -14,6 +24,12 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+/**
+ * @param req - request
+ * @param res - response
+ * @param next - next
+ * @returns The user, which was created
+ */
 export async function createUser(req: Request, res: Response, next: NextFunction) {
     try {
         const createdUser = await User.create(req.body);
@@ -23,6 +39,13 @@ export async function createUser(req: Request, res: Response, next: NextFunction
     }
 }
 
+/**
+ * @param req - request
+ * @param res - response
+ * @param next - next
+ * @returns The user, which was updated
+ * @throws {@link ../models/errors/User-not-found} if updatedUser is `null`
+ */
 export async function updateUser(req: Request, res: Response, next: NextFunction) {
     try {
         const updatedUser = await User.findByIdAndUpdate({_id: req.params.id}, {$set: {...req.body}});
@@ -35,6 +58,13 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
     }
 }
 
+/**
+ * @param req - request
+ * @param res - response
+ * @param next - next
+ * @returns The user, which was deleted
+ * @throws {@link ../models/errors/User-not-found} if deletedUser is `null`
+ */
 export async function deleteUser(req: Request, res: Response, next: NextFunction) {
     try {
         const deletedUser = await User.findByIdAndDelete({_id: req.params.id});

@@ -1,3 +1,7 @@
+/**
+ * This is basic exception
+ * {@label STRING_INDEXER}
+ */
 class CustomException extends Error {
     status: number;
     message: string;
