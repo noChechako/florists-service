@@ -1,4 +1,9 @@
 {
-  "entryPoints": ["index.ts"],
-  "out": "docs"
+  "entryPoints": ["src"],
+  "entryPointStrategy": "Expand",
+  "out": "public/docs",
+  "plugin": ["typedoc-theme-hierarchy"],
+  "theme": "hierarchy",
+  "tsconfig": "./tsconfig.json",
+  "name": "Florists"
 }
