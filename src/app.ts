@@ -4,7 +4,7 @@ import userRouter from './controllers/user.controller';
 import authRouter from './controllers/auth.controller';
 import {connectDatabase} from './repositories/connect.database';
 import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from '../swagger.json';
+import swaggerJsdoc from '../swagger-output.json';
 
 class App {
     public server;
