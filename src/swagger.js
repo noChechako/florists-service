@@ -30,8 +30,8 @@ const doc = {
 	produces: [
 		'application/json'
 	],
-	securityDefinitions: {},  // by default: empty object
-	definitions: {},          // by default: empty object (Swagger 2.0)
+	securityDefinitions: {},
+	definitions: {},
 	components: {
 		securitySchemes: {
 			bearerAuth: {
@@ -42,20 +42,11 @@ const doc = {
 		},
 		"schemas": {
 			"UserOutput": {
-					"_id": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					},
+					"_id": "632add196a27c57f3ecf1ab2",
+					"email": "test@gmail.com",
+					"username": "username",
+					"password": "password",
 					"role": {
-						"type": "string",
 						"enum": [
 							"ADMIN",
 							"USER"
@@ -63,30 +54,17 @@ const doc = {
 					}
 			},
 			"AccessToken": {
-					"accessToken": {
-						"type": "string"
-					}
+					"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMTIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NjQ3OTQ2NDMsImV4cCI6MTY2NDc5NTg0M30.UdETDmIqA1Yaf5n6aaQjM61YtxDVBP7w0M7hgiwzUkk"
 			},
 			"UserAuth": {
-					"username": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					}
+					"username": "username",
+					"password": "password"
 			},
 			"UserInput": {
-					"email": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					},
+					"email": "test@gmail.com",
+					"username": "username",
+					"password": "password",
 					"role": {
-						"type": "string",
 						"enum": [
 							"ADMIN",
 							"USER"

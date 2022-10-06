@@ -19,9 +19,10 @@ dotenv.config();
  */
 export async function login(req: Request, res: Response, next: NextFunction) {
     /*
-        #swagger.description = 'Some description...'
-        #swagger.summary = 'Some summary...'
+        #swagger.description = 'Get access token'
+        #swagger.summary = 'Get access token'
         #swagger.tags = ['Auth']
+        #swagger.security = []
         #swagger.requestBody = {
               required: true,
               schema: { $ref: "#/components/schemas/UserAuth" }
@@ -36,6 +37,8 @@ export async function login(req: Request, res: Response, next: NextFunction) {
                 }
             }
         }
+        #swagger.responses[401]
+        #swagger.responses[500]
     */
     const {username, password}: LoginCredentials = req.body;
     const user = await User.findOne({username, password});
