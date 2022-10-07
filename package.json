@@ -11,12 +11,8 @@
     "migrate": "migrate",
     "tslint": "tslint -p tsconfig.json",
     "test": "jest --verbose --rootDir=src",
-    "doc": "typedoc --entryPoints src --entryPointStrategy expand --out docs --plugin typedoc-theme-hierarchy --theme hierarchy --excludeNotDocumented"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run tslint"
-    }
+    "doc": "typedoc --entryPoints src --entryPointStrategy expand --out docs --plugin typedoc-theme-hierarchy --theme hierarchy --excludeNotDocumented",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -44,8 +40,9 @@
     "ts-jest": "^29.0.3",
     "tslint": "^6.1.3",
     "typedoc": "^0.23.15",
+    "typedoc-plugin-coverage": "^2.0.0",
     "typedoc-theme-hierarchy": "^3.0.0",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.4"
   },
   "jest": {
     "preset": "ts-jest",
