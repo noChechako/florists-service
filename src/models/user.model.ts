@@ -26,11 +26,11 @@ const UserSchema = new Schema({
     },
 });
 
-export interface UserResponse extends mongoose.Document{
+export interface UserModel extends mongoose.Document{
     email: string;
     username: string;
     password: string;
     role: ROLE;
 }
 
-export default mongoose.model<UserResponse>('User', UserSchema);
+export default mongoose.model<UserModel>('User', UserSchema);

@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
-import {logger} from '../utils/logger';
+import {logger} from './logger';
+import {getConfig} from '../config/config';
 
-const mongoURL = process.env.MONGODB_URI || 'mongodb://localhost:27017';
+const config = getConfig();
+
+const mongoURL = config.db.uri;
 
 const mongoOptions = {
     useFindAndModify: false,

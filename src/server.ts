@@ -1,12 +1,14 @@
 import express from 'express';
-import {errorMiddleware} from './middlewares/error-handler';
-import userRouter from './controllers/user.controller';
-import authRouter from './controllers/auth.controller';
-import {connectDatabase} from './repositories/connect.database';
+import {errorMiddleware} from './middlewares/error-handler.middleware';
+import userRouter from './routes/user.router';
+import authRouter from './routes/auth.router';
+import {connectDatabase} from './infrastructure/connect.database';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from '../swagger.json';
+import {httpLoggerMiddleware} from './middlewares/http-logger.middleware';
+import {authenticateJWTMiddleware} from './middlewares/auth.middleware';
 
-class App {
+class Server {
     public server;
 
     constructor() {
@@ -21,6 +23,7 @@ class App {
         this.server.use(express.json());
         this.server.use(express.urlencoded({extended: true}));
         this.server.use(errorMiddleware);
+        this.server.use(httpLoggerMiddleware);
     }
 
     private routes() {
@@ -41,4 +44,4 @@ class App {
     }
 }
 
-export default new App().server;
+export default new Server().server;

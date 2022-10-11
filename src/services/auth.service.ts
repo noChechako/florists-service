@@ -2,34 +2,30 @@
  * @module auth-service
  */
 import User from '../models/user.model';
-import {LoginCredentials} from '../shared/interfaces/login.interface';
-import {NextFunction, Response, Request} from 'express';
+import {LoginOutputToken, LoginPostCredentials} from '../shared/interfaces/login.interface';
 import jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
 import UnauthorizedException from '../shared/errors/unauthorized.exception';
+import {getConfig} from '../config/config';
 
-dotenv.config();
+const config = getConfig();
 
 /**
- * @param req - request
- * @param res - response
- * @param next - next
- * @returns Access token
+ * @param body - LoginCredentials
+ * @returns string
  * @throws {@link ../models/errors/Unauthorized} if user is `null`
  */
-export async function login(req: Request, res: Response, next: NextFunction) {
-    const {username, password}: LoginCredentials = req.body;
+export async function login(body: LoginPostCredentials): Promise<LoginOutputToken> {
+    const {username, password} = body;
     const user = await User.findOne({username, password});
-    if (user) {
-        const accessToken = jwt.sign({
-            username: user.username,
-            role: user.role
-        }, process.env.JWT_SECRET_KEY, {expiresIn: '20m'});
 
-        return res.json({
-            accessToken,
-        });
-    } else {
-      next(new UnauthorizedException());
+    if (!user) {
+        throw new UnauthorizedException();
     }
+
+    const accessToken = jwt.sign({
+        username: user.username,
+        role: user.role
+    }, config.app.jwtSecret, {expiresIn: config.app.jwtMaxAge});
+
+    return {accessToken};
 }

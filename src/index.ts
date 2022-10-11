@@ -1,6 +1,9 @@
-import app from './app';
-import {logger} from './utils/logger';
+import server from './server';
+import {logger} from './infrastructure/logger';
+import {getConfig} from './config/config';
 
-app.listen(process.env.EXTERNAL_PORT || 3000, () => {
-    logger.info(`Server listening on port ${process.env.EXTERNAL_PORT || 3000}`);
+const config = getConfig();
+
+server.listen(config.app.port, () => {
+    logger.info(`Server listening on port ${config.app.port}`);
 });

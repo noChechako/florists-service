@@ -14,18 +14,27 @@ const config = getConfig();
  * @throws {@link ../models/errors/Unauthorized} if authHeader is `null`
  * @throws {@link ../models/errors/Forbidden} if err
  */
-export function authenticateJWT(req: Request, res: Response, next: NextFunction) {
+export function authenticateJWTMiddleware(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
-    if (authHeader) {
-        const token = authHeader.split(' ')[1];
 
-        jwt.verify(token, config.app.jwtSecret, (err: Error) => {
-            if (err) {
-                next(new ForbiddenException());
-            }
-            next();
-        });
-    } else {
-       next(new UnauthorizedException());
+    console.log(req.originalUrl);
+    console.log(['/api-docs/','/login/'].includes(req.originalUrl));
+    if(['/api-docs/','/login/'].includes(req.originalUrl)){
+        next();
+        console.log(44);
+        return;
     }
+
+    if (!authHeader) {
+        next(new UnauthorizedException());
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, config.app.jwtSecret, (err: Error) => {
+        if (err) {
+            next(new ForbiddenException());
+        }
+        next();
+    });
 }
